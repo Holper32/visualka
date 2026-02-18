@@ -1,10 +1,10 @@
-interface User{
+export interface User{
     id:number;
     name:string;
     email?:string;
     isActive:boolean;
 }
-function createUser(id:number, name:string, email?:string):User{
+export function createUser(id:number, name:string, email?:string):User{
     return {
         id:id,
         name:name,
@@ -12,30 +12,30 @@ function createUser(id:number, name:string, email?:string):User{
         isActive: true
     }
 }
-interface Book{
+export interface Book{
     title:string;
     author:string;
     year?:number;
     genre:'fiction' | 'non-fiction';
 }
-function createBook(book:Book):Book{
+export function createBook(book:Book):Book{
     return book;
 }
-const book1=createBook({
+export const book1=createBook({
     title:"книга1",
     author:"Автор",
     year:1998,
     genre:"fiction"
 });
-const book2=createBook({
+export const book2=createBook({
     title:"книга1",
     author:"Автор",
     genre:"fiction"
 });
-function calculateArea(shape: 'circle', dimensions: { radius: number }): number;
-function calculateArea(shape: 'square', dimensions: { side: number }): number;
+export function calculateArea(shape: 'circle', dimensions: { radius: number }): number;
+export function calculateArea(shape: 'square', dimensions: { side: number }): number;
 
-function calculateArea(shape: 'circle' | 'square', dimensions: any): number {
+export function calculateArea(shape: 'circle' | 'square', dimensions: any): number {
     if (shape === 'circle') {
         return Math.PI * dimensions.radius ** 2;
     }
@@ -45,7 +45,7 @@ console.log(calculateArea('circle', { radius: 5 }));
 console.log(calculateArea('square', { side: 4 }));
 
 type Status="active"|"inactive"|"new";
-function getStatusColor(status:Status):string{
+export function getStatusColor(status:Status):string{
     if (status==="active") return "green"
     else if(status==="new") return "yellow"
     else return "red"
@@ -55,12 +55,12 @@ console.log("inactive", getStatusColor("inactive"))
 console.log("new",getStatusColor("new"))
 
 type StringFormatter=(str:string, uppercase?:boolean)=>string;
-const UpperFirst: StringFormatter=(str:string,uppercase:boolean=false):string=>{
+export const UpperFirst: StringFormatter=(str:string,uppercase:boolean=false):string=>{
     if (str.length==0) return str;
     let result:string=str[0].toUpperCase()+str.slice(1,str.length).toLowerCase();
     return uppercase? result.toUpperCase() : result;
 }
-const TrimStr: StringFormatter=(str:string,uppercase:boolean=false):string=>{
+export const TrimStr: StringFormatter=(str:string,uppercase:boolean=false):string=>{
     if (str.length==0) return str;
     const trimmed:string=str.trim();
     return uppercase? trimmed.toUpperCase():trimmed;
@@ -68,7 +68,7 @@ const TrimStr: StringFormatter=(str:string,uppercase:boolean=false):string=>{
 console.log(UpperFirst("gsdgdsgd"));
 console.log(TrimStr("    gggg    "), true);
 
-function getFirstElement<T>(arr: T[]): T | undefined {
+export function getFirstElement<T>(arr: T[]): T | undefined {
     if (arr.length==0) return undefined;
     return arr[0];
 }
@@ -88,7 +88,7 @@ interface HasId {
     id: number;
 }
 
-interface User1 extends HasId {
+export interface User1 extends HasId {
     name: string;
     email?: string;
 }
@@ -99,7 +99,7 @@ const users: User1[] = [
     { id: 3, name: 'Петр' }
 ];
 
-function findById<T extends HasId>(items: T[], id: number): T | undefined {
+export function findById<T extends HasId>(items: T[], id: number): T | undefined {
     for (let i = 0; i < items.length; i++) {
         if (items[i].id === id) {
             return items[i];
