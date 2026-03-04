@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "types": ["vitest/import", "vitest/globals"],
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  },
+  "include": ["**/*.ts", "**/*.test.ts", "vitest.config.ts"]
+}
