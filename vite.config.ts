@@ -2,13 +2,7 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
     test: {
-        include: [
-            '**/*.{query,type,validator}.test.ts',
-        ],
-        exclude: [
-            '**/node_modules/**',
-            '**/dist/**',
-        ],
+        include: ['tests/**/*.test.ts', 'tests/**/*.test.ts'],
         globals: true,
     },
 })
