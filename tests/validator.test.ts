@@ -21,7 +21,7 @@ describe('operations', () => {
 
     it('where фильтрует', () => {
         const result = where<User, 'city'>('city', 'Москва')(users);
-        expect(result).toHaveLength(2);
+        expect(result).toHaveLength(1);
     });
 
     it('sort сортирует', () => {
@@ -32,13 +32,17 @@ describe('operations', () => {
 
     it('groupBy группирует', () => {
         const result = groupBy<User, 'city'>('city')(users);
-        expect(result).toHaveLength(2);
-        expect(result[0].key).toBe('Москва');
-        expect(result[0].items).toHaveLength(2);
+        expect(result).toHaveLength(3);
+        const biyskGroup = result.find(g => g.key === 'Бийск');
+        expect(biyskGroup?.items).toHaveLength(1);
     });
 
     it('having фильтрует группы', () => {
-        const groups = groupBy<User, 'city'>('city')(users);
+        const localUsers = [
+            ...users,
+            { id: 4, name: 'Иван', age: 22, city: 'Москва' }
+        ];
+        const groups = groupBy<User, 'city'>('city')(localUsers);
         const result = having<User, 'city'>(g => g.items.length > 1)(groups);
         expect(result).toHaveLength(1);
         expect(result[0].key).toBe('Москва');
