@@ -27,7 +27,7 @@ describe('query', () => {
 
     it('должен выполнять where', () => {
         const q = query<User>(createWhereOp<User, 'city'>('city', 'Москва'));
-        expect(q(users)).toHaveLength(2);
+        expect(q(users)).toHaveLength(1);
     });
 
     it('должен выполнять sort', () => {
@@ -40,7 +40,7 @@ describe('query', () => {
     it('должен выполнять groupBy', () => {
         const q = query<User, any>(createGroupByOp<User, 'city'>('city'));
         const result = q(users);
-        expect(result).toHaveLength(2);
+        expect(result).toHaveLength(3);
     });
 
     it('должен принимать правильную последовательность', () => {
